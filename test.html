@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Javascript</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="sprites.jquery.js"></script>
+<script>
+$(function() {
+    $('img').sprites();
+    
+    
+    var queryString = 'x=13&y=12',
+          re = /([^&=]+)=([^&]*)/g, m;
+    
+    m = re.exec(queryString);
+    console.log(m);
+})
+</script>
+
+</head>
+
+<body>
+<img src="sprite.png?x=20&y=0" width="40" height="60" class="pics">
+
+<img src="sprite.png?x=80&y=0" width="40" height="60" class="pics">
+
+<img src="sprite.png?x=140&y=0" width="40" height="60" class="pics">
+
+<img src="sprite.png?x=200&y=0" width="40" height="60" class="pics">
+
+</body>
+
+</html>
