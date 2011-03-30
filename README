@@ -1,0 +1,19 @@
+jqsprites – jQuery Sprites Plugin v0.1
+
+Copyright 2011, Simone Carella
+Use it without restrictions.
+ 
+Aim of this plugin is to let you use sprites as you
+would do with normal <img> element. You just have to
+add some parameters to the src string to make it work.
+
+The plugin will convert this:
+<img class="sprite" src="sprite.png?x=35&y=120" width="64" height="64" class="pic">
+
+into this:
+<div style="background:url(sprite.png) -35px -120px;width:64px;height:64px" class="sprite"></div>
+
+How to use: 
+$('img.selector').sprites();
+ 
+That's all.
