@@ -12,7 +12,7 @@
  * <img class="sprite" src="sprite.png?x=35&y=120" width="64" height="64" class="pic">
  *
  * into this:
- * <div style="background:url(sprite.png) -35px -120px;width:64px;height:64px">
+ * <div style="background:url(sprite.png) -35px -120px;width:64px;height:64px" class="sprite"></div>
  * 
  * How to use: 
  * $('img.selector').sprites();
