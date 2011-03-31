@@ -82,23 +82,20 @@
             e.style.height = height + 'px';
             e.className = className; 
 			
-			self.replaceWith(e);
-			
-			if (params['hx'] || params['hy']) {
-				hx = params['hx'];
-				hy = params['hy'];
-				
-				$(e).bind('mouseover', function() {
-					e.style.background = 'url(' + src + ') -' + hx + 'px -' + hy + 'px ';
-				});
-				
-				$(e).bind('mouseout', function() {
-					e.style.background = 'url(' + src + ') -' + x + 'px -' + y + 'px ';
-				});
-			}
+            self.replaceWith(e);
 
-            
+            if (params['hx'] || params['hy']) {
+                hx = params['hx'];
+		hy = params['hy'];
+			
+		$(e).bind('mouseover', function() {
+		    e.style.background = 'url(' + src + ') -' + hx + 'px -' + hy + 'px ';
+		});
+				
+		$(e).bind('mouseout', function() {
+		    e.style.background = 'url(' + src + ') -' + x + 'px -' + y + 'px ';
+		});
+            }
         }); 
     }
-
 })(jQuery);
