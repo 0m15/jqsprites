@@ -9,17 +9,80 @@ $(function() {
     $('img').sprites();
 })
 </script>
+<style>
 
+body {padding:0 2%;font-family:'Gill Sans', Trebuchet Ms, Arial, Helvetica, sans-serif;color:#444;background:#eee;}
+h1,h2,h3,h4,h5,h6 {font-weight:normal;-webkit-font-smoothing:antialiased;padding-left:60px;}
+h1 {margin-bottom:0;}
+ol li h2 {padding-left:20px;}
+img, .pics {margin-left:20px;margin-top:20px;}
+h1 {font-size:144px;}
+p {font-family:Georgia, Times, serif;padding-left:60px;}
+#about {width:90%;background:#fff;padding-bottom:40px;}
+a {display:block;margin:60px 0 80px 60px;padding:10px 16px;background:#eee;box-shadow:5px 5px 0px #ddd;width:120px;text-align:center;text-decoration:none;color:#444;text-shadow:0 1px 0 #fff;}
+a:hover, active {background:#444;box-shadow:5px 5px 0px #777;color:#efefef;text-shadow:0px 1px 0 #000;}
+ol li pre, ol li code {font-family:'Monaco', Courier New;margin-bottom:20px;font-size:13px;padding:20px;}
+ol li {padding-bottom:40px;}
+
+</style>
 </head>
 
 <body>
-<img src="sprite.png?x=20&y=0&hx=80&hy=0" width="40" height="60" class="pics">
+<section id="about">
+    <h1>jqSprites</h1>
+    <h2>A simple jQuery plugin that let you easily use and manage (rollovers, animations) sprites into <code>&lt;img&gt;</code> elements.</h2>
+     <a href="https://github.com/zimok/jqsprites" title="jqsprites on github">Fork on Github</a>
+    
+   
+<ol>
+    <li><h2>Use the script
+        <pre>
+$(function() {
+    
+    $('.selector').sprites({
+        'defaultWidth' : 40,
+        'defaultHeight' : 60
+    });
+    
+});
+        </pre>
+        </li>
+    <li>
+        <h2>Simple sprite with X and Y. It takes defaultWidth and defaultHeight as size.</h2>
+        <code>&lt;img src="sprite.png?x=20&y=0"&gt;</code>
+        <img src="sprite.png?x=20&y=0" class="pics">
+    </li>
+    <li>
+        <h2>Simple sprite with X, Y and a class</h2>
+        <code>&lt;img src="sprite.png?x=200&y=0" width="40" height="60" class="pics"&gt;</code>
+        <img src="sprite.png?x=200&y=0" width="40" height="60" class="pics">    
+    </li>
+    
+    <li>
+        <h2>Rollover with additional hoverX and hoverY</h2>
+        <code>&lt;img src="sprite.png?x=140&y=0&hx=80&hy=0" width="40" height="60" class="pics"&gt;</code>
+        <img src="sprite.png?x=140&y=0&hx=80&hy=0" width="40" height="60" class="pics">
+    </li>
+    
+    <li>
+        <h2>Linear Animation</h2>
+        <code>&lt;img src="sprite.png?x=20&y=0&animate=true&offset=40&end=200&fps=10&loop=true" width="40" height="60" class="pics"&gt;</code>
+<img src="sprite.png?x=20&y=0&animate=true&offset=40&end=200&fps=10&loop=true" width="40" height="60" class="pics">
+    </li>
+ </ol>   
+    
+</section>
+    
+<footer>
+<p>&copy; 2011 Simone Carella. Use it without restrictions, possibly by keeping header files and author references intacts :)</p>        
+</footer>
+    
+    
 
-<img src="sprite.png?x=80&y=0" width="40" height="60" class="pics">
 
-<img src="sprite.png?x=140&y=0" width="40" height="60" class="pics">
 
-<img src="sprite.png?x=200&y=0" width="40" height="60" class="pics">
+
+
 
 </body>
 
