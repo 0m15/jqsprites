@@ -48,19 +48,18 @@
             'defaultHeight' : 64,
         };
                 
-   		function parseQs(qs) {
-			var ex,
-			    a = /\+/g,  // Regex for replacing addition symbol with a space
-			    r = /([^&=]+)=?([^&]*)/g,
-			    d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
-			    q = qs,
-				tmp = {};
+   	function parseQs(qs) {
+		var ex,
+		    a = /\+/g,  // Regex for replacing addition symbol with a space
+		    r = /([^&=]+)=?([^&]*)/g,
+		    d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+		    q = qs,
+                    tmp = {};
 
-			    while (ex = r.exec(q)) {
-			       tmp[d(ex[1])] = d(ex[2]);
-				}
-				
-				return tmp;
+		    while (ex = r.exec(q)) {
+                        tmp[d(ex[1])] = d(ex[2]);
+		    }	
+                       return tmp;
 		}
 		
         if (options) {
@@ -73,7 +72,7 @@
             src = self.attr('src').split('?')[0];
             x = params['x'];
             y = params['y'];
-			width = self.attr('width') || settings.defaultWidth;
+	    width = self.attr('width') || settings.defaultWidth;
             height = self.attr('height') || settings.defaultHeight;
 			className = self.attr('class');
             
