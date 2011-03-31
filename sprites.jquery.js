@@ -1,9 +1,10 @@
 /*
- * sprites.jquery – jQuery Sprites Plugin v0.1
- *
+ * sprites.jquery – jQuery Sprites Plugin v0.2
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
  * Copyright 2011, Simone Carella
  * Use it without restrictions.
- * 
+ *
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
  * Aim of this plugin is to let you use sprites as you
  * would do with normal <img> element. You just have to
  * add some parameters to the src string to make it work.
@@ -19,16 +20,26 @@
  *
  * That's all. 
  *
- * Date: Sun Mar 30 21:18:00 2011 +0100
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ * UPDATES (v0.2):
+ *
+ * - Added sprite hover support to img
+ *   <img src="sprite.png?x=20&y=0&hx=60&hy=0"> where 'hx' and 'hy' are the
+ *   effective coordinates for the rollover state image
+ *
+ * - Improved parsing of querystring by using regex. 
+ *
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ * Date: Sun Mar 31 13:22:00 2011 +0100
+ *
  */
  
 (function() {
         
     $.fn.sprites = function(options) {
-        var attrs, 
+        var params = {}, 
             className, 
             src, 
-            x, y, 
             width, 
             height;
             
@@ -37,41 +48,57 @@
             'defaultHeight' : 64,
         };
                 
-        function getX(str) {
-            return getXY(str, 'x');
-        }
-        
-        function getY(str) {
-            return getXY(str, 'y');
-        }
-        
-        function getXY(str, val) {
-            var index = (val == 'x') ? 0 : 1;            
-            return parseInt(str.split('?')[1].split('&')[index].replace(val + "=",""));
-        }
-        
+   		function parseQs(qs) {
+			var ex,
+			    a = /\+/g,  // Regex for replacing addition symbol with a space
+			    r = /([^&=]+)=?([^&]*)/g,
+			    d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+			    q = qs,
+				tmp = {};
+
+			    while (ex = r.exec(q)) {
+			       tmp[d(ex[1])] = d(ex[2]);
+				}
+				
+				return tmp;
+		}
+		
         if (options) {
             $.extend(settings, options);
         }
         
         return this.each(function() {
-            var self = $(this);
-            attrs = self.attr('src');
-            className = self.attr('class');
-            src = attrs.split('?')[0];
-            x = getX(attrs);
-            y = getY(attrs);
-            width = self.attr('width') || settings.defaultWidth;
+            var self = $(this), x, y, hx, hy;
+            params = parseQs(self.attr('src').split('?')[1]);
+            src = self.attr('src').split('?')[0];
+            x = params['x'];
+            y = params['y'];
+			width = self.attr('width') || settings.defaultWidth;
             height = self.attr('height') || settings.defaultHeight;
+			className = self.attr('class');
             
             var e = document.createElement('div');
-            
             e.style.background = 'url(' + src + ') -' + x + 'px -' + y + 'px ';
             e.style.width = width + 'px';
             e.style.height = height + 'px';
             e.className = className; 
+			
+			self.replaceWith(e);
+			
+			if (params['hx'] || params['hy']) {
+				hx = params['hx'];
+				hy = params['hy'];
+				
+				$(e).bind('mouseover', function() {
+					e.style.background = 'url(' + src + ') -' + hx + 'px -' + hy + 'px ';
+				});
+				
+				$(e).bind('mouseout', function() {
+					e.style.background = 'url(' + src + ') -' + x + 'px -' + y + 'px ';
+				});
+			}
+
             
-            self.replaceWith(e);
         }); 
     }
 
