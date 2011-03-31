@@ -25,7 +25,11 @@
 +   - Added sprite hover support to img
 +     <img src="sprite.png?x=20&y=0&hx=60&hy=0"> where 'hx' and 'hy' are the
 +     effective coordinates for the rollover state image
-+  
 +   - Improved parsing of querystring by using regex. 
-+  
++
++   TODO (next releases):
++   - Expose public API for handling animations and rollovers
++   - Add binding/unbinding to custom events
++   - Test for compatibility in IE7/8/9 (still not tested!)
++
 +   Date: Sun Mar 31 19:13:00 2011 +0100 
