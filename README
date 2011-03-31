@@ -1,8 +1,8 @@
 jqsprites – jQuery Sprites Plugin v0.1
-
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 Copyright 2011, Simone Carella
 Use it without restrictions.
- 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 Aim of this plugin is to let you use sprites as you
 would do with normal <img> element. You just have to
 add some parameters to the src string to make it work.
@@ -17,3 +17,9 @@ How to use:
 $('img.selector').sprites();
  
 That's all.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+PLANNED ADDITIONS and IMPROVEMENTS
+- Add regex parsing of querystring
+- Add support to image hover: sprite.png?x=35&y=25&hy=70&hy=40
+- Add support to linear animation with sprites: sprite.png?animate=true&stop=20&end=120&loop=true
