@@ -16,7 +16,7 @@
 +   How to use: 
 +   $('img.selector').sprites();
 +  
-+   For more detailed instructions and demos, see http://publikcollective.com/jqtest. 
++   For more detailed instructions and demos, see http://publikcollective.com/jqsprites. 
 +
 +   UPDATES (v0.3):
 +   - Added animation support. See test.html.
@@ -31,5 +31,6 @@
 +   - Expose public API for handling animations and rollovers
 +   - Add binding/unbinding to custom events
 +   - Test for compatibility in IE7/8/9 (still not tested!)
++   - Find a way to manage fallbacks for non-js browser (question: should this be 'ideally' required for the sake of the plugin itself?)
 +
 +   Date: Sun Mar 31 19:13:00 2011 +0100 
