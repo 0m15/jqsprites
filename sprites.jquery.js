@@ -49,17 +49,17 @@
         };
                 
    	function parseQs(qs) {
-		var ex,
-		    a = /\+/g,  // Regex for replacing addition symbol with a space
-		    r = /([^&=]+)=?([^&]*)/g,
-		    d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
-		    q = qs,
-                    tmp = {};
+	    var ex,
+	          a = /\+/g,  // Regex for replacing addition symbol with a space
+		  r = /([^&=]+)=?([^&]*)/g,
+		  d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+		  q = qs,
+                  tmp = {};
 
-		    while (ex = r.exec(q)) {
-                        tmp[d(ex[1])] = d(ex[2]);
-		    }	
-                       return tmp;
+		  while (ex = r.exec(q)) {
+                      tmp[d(ex[1])] = d(ex[2]);
+		  }	
+                  return tmp;
 		}
 		
         if (options) {
