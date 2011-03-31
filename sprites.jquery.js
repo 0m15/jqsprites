@@ -1,5 +1,5 @@
 /*
- * sprites.jquery – jQuery Sprites Plugin v0.2
+ * sprites.jquery – jQuery Sprites Plugin v0.3
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
  * Copyright 2011, Simone Carella
  * Use it without restrictions.
@@ -18,7 +18,11 @@
  * How to use: 
  * $('img.selector').sprites();
  *
- * That's all. 
+ * For more detailed instructions and demos, see the test.html file included. 
+ *
+ * UPDATES (v0.3):
+ * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ * - Added animation support. See test.html.
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
  * UPDATES (v0.2):
@@ -30,7 +34,7 @@
  * - Improved parsing of querystring by using regex. 
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
- * Date: Sun Mar 31 13:22:00 2011 +0100
+ * Date: Sun Mar 31 19:13:00 2011 +0100
  *
  */
  
@@ -50,7 +54,7 @@
             'defaultHeight' : 60,
         };
                 
-   	    function parseQs(qs) {
+        function parseQs(qs) {
             var ex,
                 a = /\+/g,  // Regex for replacing addition symbol with a space
                 r = /([^&=]+)=?([^&]*)/g,
@@ -61,19 +65,16 @@
                 while (ex = r.exec(q)) {
                     tmp[d(ex[1])] = d(ex[2]);
                 }	
-                console.log(tmp);
+
                 return tmp;
     	}
     	
-    	function stop() {
-    	    console.log('======== stop');
-    	    window.clearInterval(animation);
+    	function stopAnimate(a) {
+    	    window.clearInterval(a);
     	    
     	}
     	
     	function animate(e, offset, current, x, y) {
-             console.log('offset: ' + (current + offset));
-             console.log('current: ' + current);
              e.style.background = 'url(' + src + ') -' + current + 'px -' + y + 'px ';
     	}
 		
@@ -82,21 +83,20 @@
         }
         
         return this.each(function() {
-            var self = $(this), x, y, hx, hy, end, fps, timeout, frame = 1, offset, loop;
+            var self = $(this), x, y, hx, hy, end, fps, interval, frame = 1, offset, loop;
             params = parseQs(self.attr('src').split('?')[1]);
             src = self.attr('src').split('?')[0];
             x = params['x'];
             y = params['y'];
-	        width = self.attr('width') || settings.defaultWidth;
+            width = self.attr('width') || settings.defaultWidth;
             height = self.attr('height') || settings.defaultHeight;
-			className = self.attr('class');
+            className = self.attr('class');
             
             var e = document.createElement('div');
             e.style.background = 'url(' + src + ') -' + x + 'px -' + y + 'px ';
             e.style.width = width + 'px';
             e.style.height = height + 'px';
             e.className = className; 
-			
             self.replaceWith(e);
 
             if (params['hx'] || params['hy']) {
@@ -112,13 +112,9 @@
                 });
             }
             
-            
-            
             if(params['animate'] && params['offset'] && params['end'] && params['fps']) {
-                // fps to timeout = 1000 ms / number of frames
-                // 1000 / 25 = 40 ms
-                timeout = 1000 / parseInt(params['fps']);
-                console.log(timeout);
+                // fps to interval = 1000 ms / number of frames
+                interval = 1000 / parseInt(params['fps']);
                 end = parseInt(params['end']);
                 current = parseInt(x);
                 offset = parseInt(params['offset']);
@@ -126,30 +122,18 @@
                 loop = params['loop'];
 
                 animation = window.setInterval(function() {
-                     //console.log(parseInt(params['offset']));
-                     //offset = parseInt(x);
                      current = current + offset;
-                     console.log('loop: ' + loop);
                      
                      if (current > end && loop) {
-                         console.log('========= end')
-                         //stop();
-                         //window.clearInterval(animation);
-                         //animate(e, offset, current, x, y);
                          current = parseInt(x);
                          
                      } else if (current == end && !loop) {
-                         window.clearInterval(animation);
+                         stop(animation);
                      }
                      
                      animate(e, offset, current, x, y);
                      
-                }, timeout);
-                
-                                
-
-                
-                
+                }, interval);
             }
         }); 
     }
