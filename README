@@ -1,32 +1,31 @@
- * sprites.jquery – jQuery Sprites Plugin v0.2
- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
- * Copyright 2011, Simone Carella
- * Use it without restrictions.
- *
- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
- * Aim of this plugin is to let you use sprites as you
- * would do with normal <img> element. You just have to
- * add some parameters to the src string to make it work.
- *
- * The plugin will convert this:
- * <img class="sprite" src="sprite.png?x=35&y=120" width="64" height="64" class="pic">
- *
- * into this:
- * <div style="background:url(sprite.png) -35px -120px;width:64px;height:64px" class="sprite"></div>
- * 
- * How to use: 
- * $('img.selector').sprites();
- *
- * That's all. 
- *
- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
- * UPDATES (v0.2):
- *
- * - Added sprite hover support to img
- *   <img src="sprite.png?x=20&y=0&hx=60&hy=0"> where 'hx' and 'hy' are the
- *   effective coordinates for the rollover state image
- *
- * - Improved parsing of querystring by using regex. 
- *
- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
- * Date: Sun Mar 31 13:22:00 2011 +0100
++   sprites.jquery – jQuery Sprites Plugin v0.3
++
++   Copyright 2011, Simone Carella
++   Use it without restrictions.
++ 
++   Aim of this plugin is to let you use sprites as you
++   would do with normal <img> element. You just have to
++   add some parameters to the src string to make it work.
++  
++   The plugin will convert this:
++   <img class="sprite" src="sprite.png?x=35&y=120" width="64" height="64" class="pic">
++  
++   into this:
++   <div style="background:url(sprite.png) -35px -120px;width:64px;height:64px" class="sprite"></div>
++   
++   How to use: 
++   $('img.selector').sprites();
++  
++   For more detailed instructions and demos, see http://publikcollective.com/jqtest. 
++
++   UPDATES (v0.3):
++   - Added animation support. See test.html.
++  
++   UPDATES (v0.2):  
++   - Added sprite hover support to img
++     <img src="sprite.png?x=20&y=0&hx=60&hy=0"> where 'hx' and 'hy' are the
++     effective coordinates for the rollover state image
++  
++   - Improved parsing of querystring by using regex. 
++  
++   Date: Sun Mar 31 19:13:00 2011 +0100 
